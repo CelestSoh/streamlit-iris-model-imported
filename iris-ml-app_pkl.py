@@ -10,7 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 # controls font size. None means Body, 1 means heading, more # means smaller heading 
 # In this case, st.write() is used for the heading and subtitle for the website
 st.write("""
-# Simple Iris Flower Prediction App
+# Simple Iris Flower Prediction App Update Test
 This app predicts the **Iris flower** type!
 """)
 
