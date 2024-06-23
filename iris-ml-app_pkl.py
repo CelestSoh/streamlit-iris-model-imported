@@ -2,6 +2,7 @@
 
 import streamlit as st
 import pandas as pd
+import joblib 
 from sklearn import datasets
 from sklearn.ensemble import RandomForestClassifier
 
@@ -10,7 +11,7 @@ from sklearn.ensemble import RandomForestClassifier
 # controls font size. None means Body, 1 means heading, more # means smaller heading 
 # In this case, st.write() is used for the heading and subtitle for the website
 st.write("""
-# Simple Iris Flower Prediction App Update Test
+# Simple Iris Flower Prediction App 
 This app predicts the **Iris flower** type!
 """)
 
@@ -46,28 +47,13 @@ st.write(df)
 # Load dataset
 iris = datasets.load_iris()
 
-# *By right, you should use train_test_split()
-
-# Separate features and target
-X = iris.data
-y = iris.target
-
-# Define model
-clf = RandomForestClassifier()
-# Train model
-clf.fit(X,y)
+clf = joblib.load(open('model_SVM.pkl', 'rb'))
 
 # Apply model to make predictions
 prediction = clf.predict(df)
-# Returns prediction probability. Probability (percentage decimal) of each class being the result 
-# The model's confidence. Eg: It is _% sure it is _
-prediction_proba = clf.predict_proba(df)
 
 st.subheader('Class labels and their corresponding index number')
 st.write(iris.target_names)
 
 st.subheader('Prediction')
-st.write(iris.target_names[prediction])
-
-st.subheader('Prediction Probability')
-st.write(prediction_proba)
+st.write(prediction[0][5:])
